@@ -82,9 +82,16 @@
                                     {% endfor %}
                                 </select>
                             </div>
-                            <div class="col-md-4">
+                            <div class="col-md-2">
+                                <label for="tick-input">
+                                    Tick
+                                </label>
+                                <input type="number" class="form-control form-control-sm" id="tick-input"
+                                       name="tick">
+                            </div>
+                            <div class="col-md-2">
                                 <label for="checksystem-response-input">
-                                    Checksystem response
+                                    Response
                                 </label>
                                 <input type="text" class="form-control form-control-sm" id="checksystem-response-input"
                                        name="checksystem_response">
@@ -132,6 +139,7 @@
                 <th scope="col">Team</th>
                 <th scope="col">Flag</th>
                 <th scope="col">Time</th>
+                <th scope="col">Tick</th>
                 <th scope="col">Status</th>
                 <th scope="col">Checksystem Response</th>
             </tr>

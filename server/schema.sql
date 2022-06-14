@@ -3,6 +3,7 @@ CREATE TABLE IF NOT EXISTS flags (
     sploit TEXT,
     team TEXT,
     time INTEGER,
+    tick INTEGER,
     status TEXT,
     checksystem_response TEXT
 );

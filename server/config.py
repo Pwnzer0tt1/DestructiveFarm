@@ -1,12 +1,17 @@
+import datetime
 CONFIG = {
     # Don't forget to remove the old database (flags.sqlite) before each competition.
 
     # The clients will run sploits on TEAMS and
     # fetch FLAG_FORMAT from sploits' stdout.
-    'TEAMS': {'Team #{}'.format(i): '10.0.0.{}'.format(i)
-              for i in range(1, 29 + 1)},
+    'TEAMS': {'Team #{}'.format(i): '10.60.{}.1'.format(i)
+              for i in range(1, 38 + 1)},
     'FLAG_FORMAT': r'[A-Z0-9]{31}=',
 
+    'TICK_DURATION': 120,
+    'START_TIME' : round(datetime.datetime(2022, 6, 14, 10, 0).timestamp()),
+    'END_TIME' : round(datetime.datetime(2022, 6, 14, 22, 0).timestamp()),
+    
     # This configures how and where to submit flags.
     # The protocol must be a module in protocols/ directory.
 
@@ -35,7 +40,7 @@ CONFIG = {
 
     # Password for the web interface. You can use it with any login.
     # This value will be excluded from the config before sending it to farm clients.
-    'SERVER_PASSWORD': '1234',
+    'SERVER_PASSWORD': 'ccit-poliba',
 
     # Use authorization for API requests
     'ENABLE_API_AUTH': False,

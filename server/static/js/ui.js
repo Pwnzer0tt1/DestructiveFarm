@@ -24,6 +24,7 @@ function generateFlagTableRows(rows) {
             item.team !== null ? item.team : '',
             item.flag,
             dateToString(new Date(item.time * 1000)),
+            item.tick,
             item.status,
             item.checksystem_response !== null ? item.checksystem_response : ''
         ];

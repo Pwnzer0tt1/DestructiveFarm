@@ -1,5 +1,5 @@
 import re
-import time
+import time, math
 from datetime import datetime
 
 from flask import jsonify, render_template, request
@@ -13,6 +13,9 @@ def timestamp_to_datetime(s):
     return datetime.fromtimestamp(s)
 
 
+config = reloader.get_config()
+
+
 @app.route('/')
 @auth.auth_required
 def index():
@@ -20,8 +23,6 @@ def index():
     for column in ['sploit', 'status', 'team']:
         rows = database.query('SELECT DISTINCT {} FROM flags ORDER BY {}'.format(column, column))
         distinct_values[column] = [item[column] for item in rows]
-
-    config = reloader.get_config()
 
     server_tz_name = time.strftime('%Z')
     if server_tz_name.startswith('+'):
@@ -32,6 +33,15 @@ def index():
                            distinct_values=distinct_values,
                            server_tz_name=server_tz_name)
 
+@app.route('/table')
+@auth.auth_required
+def show_table():
+    return render_template('table.html',
+                            tick_duration= config['TICK_DURATION'],
+                            curr_tick = math.floor((time.time() - config["START_TIME"]) /  config["TICK_DURATION"]),
+                            end_tick= math.floor((config["END_TIME"] - config["START_TIME"]) /  config["TICK_DURATION"]) 
+                            )
+
 
 FORM_DATETIME_FORMAT = '%Y-%m-%d %H:%M'
 FLAGS_PER_PAGE = 30
@@ -41,7 +51,7 @@ FLAGS_PER_PAGE = 30
 @auth.auth_required
 def show_flags():
     conditions = []
-    for column in ['sploit', 'status', 'team']:
+    for column in ['sploit', 'status', 'team','tick']:
         value = request.form[column]
         if value:
             conditions.append(('{} = ?'.format(column), value))
@@ -82,6 +92,22 @@ def show_flags():
         'total_count': total_count,
     })
 
+
+@app.route('/ui/show_team_exploit', methods=['GET'])
+@auth.auth_required
+def show_team_exploit_table():
+    distinct_values = {}
+    for column in ['sploit', 'team']:
+        rows = database.query('SELECT DISTINCT {} FROM flags ORDER BY {}'.format(column, column))
+        distinct_values[column] = [item[column] for item in rows]
+
+    sql = 'SELECT * FROM flags WHERE tick = ?'
+    flags = database.query(sql, [request.args.get('tick')])
+
+    return jsonify({
+        'distinct_values' : distinct_values,
+        'flags': [dict(item) for item in flags],
+    })
 
 @app.route('/ui/post_flags_manual', methods=['POST'])
 @auth.auth_required
