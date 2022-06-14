@@ -28,7 +28,15 @@ Exploit farm for attack-defense CTF competitions
 
 ## TODO
 
--UI Revamp, will do that ASAP
+- Add a line graph in the front page showing flags/tick, with coloring indicating the expoilt. Possible library to use https://www.chartjs.org/docs/latest/samples/line/line.html . Possible implementation: create new function view.py executed on GET /ui/chart, that gives a dictionary like this:
+```
+{
+    ticks = [
+        {sploit : count},
+        {sploit2 : count},
+    ]
+}  
+```
 
 ## Original Authors
 
