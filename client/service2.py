@@ -15,4 +15,4 @@ print("Here are some random flags for you:")
 
 for _ in range(1):
     flag = ''.join(random.choice(string.ascii_uppercase + string.digits) for _ in range(31)) + '='
-    print(flag, flush=True)
+    print(random.choice([flag, "no flag 4 u"]), flush=True)

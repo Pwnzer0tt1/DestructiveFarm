@@ -9,8 +9,8 @@ CONFIG = {
     'FLAG_FORMAT': r'[A-Z0-9]{31}=',
 
     'TICK_DURATION': 120,
-    'START_TIME' : round(datetime.datetime(2022, 6, 14, 10, 0).timestamp()),
-    'END_TIME' : round(datetime.datetime(2022, 6, 14, 22, 0).timestamp()),
+    'START_TIME' : round(datetime.datetime(2022, 6, 14, 22, 0).timestamp()),
+    'END_TIME' : round(datetime.datetime(2022, 6, 15, 12, 0).timestamp()),
     
     # This configures how and where to submit flags.
     # The protocol must be a module in protocols/ directory.

@@ -4,11 +4,11 @@ function escapeHtml(text) {
 }
 
 function generateFlagTableRows(rows,sploits) {
-    var html = '<tr class="table-secondary"><td>Teams </td>';
+    var html = '<thead><tr class="table-secondary"><td>Teams </td>';
     sploits.forEach(s => {
         html += '<td>' + escapeHtml(s) + '</td>';
     });
-    html += '</tr>';    
+    html += '<td id="total">Total</td></tr></thead><tbody>';    
     rows.forEach(row => {
         html += '<tr>';
         row.forEach(function (text) {
@@ -16,6 +16,7 @@ function generateFlagTableRows(rows,sploits) {
         });
         html += '</tr>';
     });
+    html += '</tbody>;'
     return html;
 }
 
@@ -36,16 +37,18 @@ function showFlags() {
             flags = response.flags;
             rows = [];
             teams.forEach(t => {
-                coloumns = [t]
+                coloumns = [];
                 sploits.forEach(s => 
                     coloumns.push(flags.filter(f => f.team == t && f.sploit == s ).length)
                  );
+                 coloumns.push(coloumns.reduce((total,v) => total + v ));
+                 coloumns.unshift(t);
                 rows.push(coloumns);
             });
             
-            console.log(rows);
-
-            $('.search-results tbody').html(generateFlagTableRows(rows,sploits));
+            $('#flag-table').html(generateFlagTableRows(rows,sploits));
+            sorttable.makeSortable(document.getElementById('flag-table'));
+            sorttable.innerSortFunction.apply(document.getElementById('total'), []);
             $('.query-status').hide();
             $('.search-results').show();
         })
@@ -58,6 +61,7 @@ function showFlags() {
 }
 
 $(function () {
+    showFlags();
     $('#show-flags-form').submit(function (event) {
         event.preventDefault();
         showFlags();

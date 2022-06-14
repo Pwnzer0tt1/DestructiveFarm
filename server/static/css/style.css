@@ -53,3 +53,10 @@ textarea {
     background: #04AA6D;
     cursor: pointer;
   }
+
+  table.sortable thead {
+    background-color:#eee;
+    color:#666666;
+    font-weight: bold;
+    cursor: default;
+}
