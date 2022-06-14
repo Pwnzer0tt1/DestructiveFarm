@@ -19,10 +19,11 @@ Exploit farm for attack-defense CTF competitions
 <p align="center">
     <img src="https://github.com/Pwnzer0tt1/DestructiveFarm/blob/master/docs/images/table_screenshot.png" width="700">
 </p>
-
+3. Dark Mode! 
+4. Dark Mode!
+5. Did I mention? Dark Mode!
 ## TODO
 
--Dark mode, cuz my eyes are bleeding
 -UI Revamp, will do that ASAP
 
 ## Original Authors

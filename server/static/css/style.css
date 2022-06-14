@@ -29,7 +29,7 @@ textarea {
     width: 100%;
     height: 15px;
     border-radius: 5px;  
-    background: #d3d3d3;
+    background: #ffffff;
     outline: none;
     opacity: 0.7;
     -webkit-transition: .2s;
@@ -42,7 +42,7 @@ textarea {
     width: 25px;
     height: 25px;
     border-radius: 50%; 
-    background: #04AA6D;
+    background: #18BC9C;
     cursor: pointer;
   }
   
@@ -50,7 +50,7 @@ textarea {
     width: 25px;
     height: 25px;
     border-radius: 50%;
-    background: #04AA6D;
+    background: #18BC9C;
     cursor: pointer;
   }
 
@@ -59,4 +59,30 @@ textarea {
     color:#666666;
     font-weight: bold;
     cursor: default;
+}
+
+
+/** 
+Dark mode stuff here we gooo
+**/
+
+body{
+    color: white ;
+    background-color: #212529 ;
+}
+
+.card-body{
+    border-radius: 25px;
+    background-color: #222539;
+}
+th, .table-secondary > td {
+    background-color: #629898 !important;
+}
+.table-hover .table-secondary:hover > td, .table-hover .table-secondary:hover > th {
+    background-color: #829898;
+}
+
+.border-light {
+    background-color: #212529;
+    border-color: #212529 !important;
 }
