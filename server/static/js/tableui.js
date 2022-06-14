@@ -51,6 +51,7 @@ function showFlags() {
             sorttable.innerSortFunction.apply(document.getElementById('total'), []);
             $('.query-status').hide();
             $('.search-results').show();
+            $('#curr_tick').text(document.getElementById("tick-input").value)
         })
         .fail(function () {
             $('.query-status').html("Failed to load flags from the farm server");
