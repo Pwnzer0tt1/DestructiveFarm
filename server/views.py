@@ -109,6 +109,24 @@ def show_team_exploit_table():
         'flags': [dict(item) for item in flags],
     })
 
+
+@app.route('/ui/show_graph', methods=['GET'])
+@auth.auth_required
+def show_graph():
+    curr_tick = math.floor((time.time() - config["START_TIME"]) /  config["TICK_DURATION"])
+    min_tick = curr_tick-50 if (curr_tick >= 50) else 0
+    
+    sploits =[item['sploit'] for item in database.query('SELECT DISTINCT sploit FROM flags ')]
+
+    ticks = database.query('SELECT * FROM stats WHERE tick between ? and ?', [min_tick, curr_tick])
+
+    return jsonify({
+        'min_tick' : min_tick,
+        'curr_tick' : curr_tick,
+        'sploits' : sploits,
+        'ticks' : [dict(item) for item in ticks]
+    })
+
 @app.route('/ui/post_flags_manual', methods=['POST'])
 @auth.auth_required
 def post_flags_manual():

@@ -15,16 +15,23 @@ Exploit farm for attack-defense CTF competitions
     'START_TIME' : round(datetime.datetime(2022, 6, 14, 22, 0).timestamp()),
     'END_TIME' : round(datetime.datetime(2022, 6, 15, 12, 0).timestamp()),
 ```
+
 2. Added a table showing Teams with the number of every flag captured by a sploit in a specified tick.
 <p align="center">
     <img src="https://github.com/Pwnzer0tt1/DestructiveFarm/blob/master/docs/images/table_screenshot.png" width="700">
 </p>
-3. Dark Mode! 
-4. Dark Mode!
-5. Did I mention? Dark Mode!
+
+3. Beatuiful chart showing flags/tick per each sploit.
+
+4. Dark Mode! 
+
+5. Dark Mode!
+
+6. Did I mention? Dark Mode!
+
 ## TODO
 
--UI Revamp, will do that ASAP
+-Automatic updates every tick
 
 ## Original Authors
 

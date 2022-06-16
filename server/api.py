@@ -31,6 +31,10 @@ def post_flags():
     db = database.get()
     db.executemany("INSERT OR IGNORE INTO flags (flag, sploit, team, time, tick, status) "
                    "VALUES (?, ?, ?, ?, ?, ?)", rows)
+    graph_row = [flags[0]['sploit'] + str(tick), flags[0]['sploit'], tick]
+    db.execute("INSERT OR IGNORE INTO stats VALUES ( ?, 0 , ? ,?)", graph_row) 
+    db.execute("UPDATE stats SET count = count + ? WHERE id LIKE ?", [len(flags), flags[0]['sploit'] + str(tick)])
+
     db.commit()
 
     return ''
