@@ -63,6 +63,11 @@ function showFlags() {
 
 $(function () {
     showFlags();
+
+    var intervalId = window.setInterval(function(){
+        showFlags();
+      }, 30*1000);
+
     $('#show-flags-form').submit(function (event) {
         event.preventDefault();
         showFlags();

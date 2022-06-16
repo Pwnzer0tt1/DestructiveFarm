@@ -173,6 +173,11 @@ function updateChart(){
                 display: true,
                 text: 'Flags/tick starting from Tick #' + response['min_tick']
             }
+            },
+            scales: {
+                y: {
+                    beginAtZero: true
+                }
             }
             },
         });
@@ -183,6 +188,10 @@ function updateChart(){
 $(function () {
     showFlags();
     updateChart();
+    var intervalId = window.setInterval(function(){
+        showFlags();
+        updateChart();
+      }, 30*1000);
     $('#show-flags-form').submit(function (event) {
         event.preventDefault();
 
