@@ -128,9 +128,13 @@ function postFlagsManual() {
         });
 }
 
-function getRandomColor(){
-    var colors = ['red','blue','green','purple','white','yellow','orange','brown']
-    return colors[Math.floor(Math.random()*colors.length)];
+var colors_map = new Object();
+function getRandomColor(name){
+    var colors = ['red','blue','green','purple','white','yellow','orange','brown','pink', 'grey', 'lime', 'aqua','cyan']
+    if (!colors_map[name]) {
+        colors_map[name] =  colors[Math.floor(Math.random()*colors.length)];
+    } 
+    return colors_map[name];
 }
 
 var myChart;
@@ -149,7 +153,7 @@ function updateChart(){
             datasets.push({
                 label: s,
                 data : counts,
-                borderColor: getRandomColor()
+                borderColor: getRandomColor(s)
             })
         });
         if (myChart != null){
