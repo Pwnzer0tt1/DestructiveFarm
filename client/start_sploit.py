@@ -16,6 +16,7 @@ import stat
 import subprocess
 import time
 import threading
+import requests
 from concurrent.futures import ThreadPoolExecutor
 from enum import Enum
 from math import ceil
@@ -24,7 +25,6 @@ from urllib.request import Request, urlopen
 
 
 os_windows = (os.name == 'nt')
-
 
 HEADER = r'''
  ____            _                   _   _             _____
@@ -81,6 +81,9 @@ def parse_args():
     parser.add_argument('-u', '--server-url', metavar='URL',
                         default='http://farm.kolambda.com:5000',
                         help='Server URL')
+    parser.add_argument('-n', '--service-name', metavar='NAME',
+                        default=None,
+                        help='Service Name')
     parser.add_argument('-a', '--alias', metavar='ALIAS',
                         default=None,
                         help='Sploit alias')
@@ -414,7 +417,7 @@ instance_storage = InstanceStorage()
 instance_lock = threading.RLock()
 
 
-def launch_sploit(args, team_name, team_addr, attack_no, flag_format):
+def launch_sploit(args, team_name, team_addr, attack_no, flag_format, flag_id_team_data):
     # For sploits written in Python, this env variable forces the interpreter to flush
     # stdout and stderr after each newline. Note that this is not default behavior
     # if the sploit's output is redirected to a pipe.
@@ -426,6 +429,8 @@ def launch_sploit(args, team_name, team_addr, attack_no, flag_format):
         command = [args.interpreter] + command
     if team_addr is not None:
         command.append(team_addr)
+    if flag_id_team_data is not None:
+        command.append(flag_id_team_data)
     need_close_fds = (not os_windows)
 
     if os_windows:
@@ -445,13 +450,13 @@ def launch_sploit(args, team_name, team_addr, attack_no, flag_format):
     return proc, instance_storage.register_start(proc)
 
 
-def run_sploit(args, team_name, team_addr, attack_no, max_runtime, flag_format):
+def run_sploit(args, team_name, team_addr, attack_no, max_runtime, flag_format, flag_id_team_data):
     try:
         with instance_lock:
             if exit_event.is_set():
                 return
 
-            proc, instance_id = launch_sploit(args, team_name, team_addr, attack_no, flag_format)
+            proc, instance_id = launch_sploit(args, team_name, team_addr, attack_no, flag_format, flag_id_team_data)
     except Exception as e:
         if isinstance(e, FileNotFoundError):
             logging.error('Sploit file or the interpreter for it not found: {}'.format(repr(e)))
@@ -557,9 +562,18 @@ def main(args):
 
         max_runtime = args.attack_period / ceil(len(teams) / args.pool_size)
         show_time_limit_info(args, config, max_runtime, attack_no)
-
+        
+        flagIds = requests.get(config['FLAG_IDS_URL']).json()    
+        
         for team_name, team_addr in teams.items():
-            pool.submit(run_sploit, args, team_name, team_addr, attack_no, max_runtime, flag_format)
+            try:
+                if args.service_name is not None:
+                    flag_id_data = flagIds[args.service_name]
+                    flag_id_team_data = flag_id_data[team_addr]
+                    
+                    pool.submit(run_sploit, args, team_name, team_addr, attack_no, max_runtime, flag_format, flag_id_team_data)
+            except:
+                continue
 
 
 def shutdown():

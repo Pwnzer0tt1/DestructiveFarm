@@ -20,6 +20,7 @@ CONFIG = {
     'SYSTEM_PORT': 4444,
     'SYSTEM_TOKEN': '31514016204944af',
     'SYSTEM_URL': 'http://10.10.0.1:8080/flags',
+    'FLAG_IDS_URL': 'http://10.10.0.1:8080/flagIds',
 
     # 'SYSTEM_PROTOCOL': 'ructf_http',
     # 'SYSTEM_URL': 'http://monitor.ructfe.org/flags',
