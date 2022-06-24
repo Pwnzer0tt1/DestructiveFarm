@@ -1,7 +1,7 @@
 import datetime
 import requests, json
 
-IGNORED_TEAMS = [0,6]
+IGNORED_TEAMS = [0,5]
 
 CONFIG = {
     # Don't forget to remove the old database (flags.sqlite) before each competition.
