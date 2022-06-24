@@ -10,7 +10,7 @@ CONFIG = {
                 for id,team in enumerate(requests.get(url="http://10.10.0.1/api/game.json").json()["teams"])},
     #'TEAMS': {'Team #{}'.format(i): '10.60.{}.1'.format(i)
     #          for i in range(1, 38 + 1)},
-    'IGNORED_TEAMS' : ['NOP Team' 'Politecnico di Bari'],
+    'IGNORED_TEAMS' : ['NOP Team','Politecnico di Bari'],
     'FLAG_FORMAT': r'[A-Z0-9]{31}=',
 
     'TICK_DURATION': 120,
