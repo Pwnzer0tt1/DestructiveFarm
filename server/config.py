@@ -18,9 +18,9 @@ CONFIG = {
     'SYSTEM_PROTOCOL': 'ccit_http',
     'SYSTEM_HOST': '127.0.0.1',
     'SYSTEM_PORT': 4444,
-    'SYSTEM_TOKEN': '31514016204944af',
+    'SYSTEM_TOKEN': '5fe56451972cb2e8be0703412981a718',
     'SYSTEM_URL': 'http://10.10.0.1:8080/flags',
-    'FLAG_IDS_URL': 'http://10.10.0.1:8080/flagIds',
+    'FLAG_IDS_URL': 'http://10.10.0.1:8081/flagIds',
 
     # 'SYSTEM_PROTOCOL': 'ructf_http',
     # 'SYSTEM_URL': 'http://monitor.ructfe.org/flags',

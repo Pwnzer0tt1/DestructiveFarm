@@ -563,15 +563,19 @@ def main(args):
         max_runtime = args.attack_period / ceil(len(teams) / args.pool_size)
         show_time_limit_info(args, config, max_runtime, attack_no)
         
-        flagIds = requests.get(config['FLAG_IDS_URL']).json()    
+        if args.service_name:
+            flagIds = requests.get(config['FLAG_IDS_URL']).json()
         
         for team_name, team_addr in teams.items():
             try:
                 if args.service_name is not None:
                     flag_id_data = flagIds[args.service_name]
-                    flag_id_team_data = flag_id_data[team_addr]
-                    
-                    pool.submit(run_sploit, args, team_name, team_addr, attack_no, max_runtime, flag_format, flag_id_team_data)
+                    flag_id_team_data = json.dumps(flag_id_data[team_addr])
+                else:
+                    flag_id_team_data = ''
+                
+                pool.submit(run_sploit, args, team_name, team_addr, attack_no, max_runtime, flag_format, flag_id_team_data)
+            
             except:
                 continue
 
