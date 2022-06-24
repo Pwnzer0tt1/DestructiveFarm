@@ -6,7 +6,7 @@ CONFIG = {
 
     # The clients will run sploits on TEAMS and
     # fetch FLAG_FORMAT from sploits' stdout.
-    'TEAMS': { team["name"] : '10.60.{}.1'.format(id) 
+    'TEAMS': { f"{team['name']} \#{id}" : '10.60.{}.1'.format(id) 
                 for id,team in enumerate(requests.get(url="http://10.10.0.1/api/game.json").json()["teams"])},
     #'TEAMS': {'Team #{}'.format(i): '10.60.{}.1'.format(i)
     #          for i in range(1, 38 + 1)},
