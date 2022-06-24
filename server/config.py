@@ -1,16 +1,18 @@
 import datetime
 import requests, json
 
+IGNORED_TEAMS = [0,6]
+
 CONFIG = {
     # Don't forget to remove the old database (flags.sqlite) before each competition.
 
     # The clients will run sploits on TEAMS and
     # fetch FLAG_FORMAT from sploits' stdout.
-    'TEAMS': { f"{team['name']} \#{id}" : '10.60.{}.1'.format(id) 
-                for id,team in enumerate(requests.get(url="http://10.10.0.1/api/game.json").json()["teams"])},
+    'TEAMS': {  f"{team['name']} #{id}" : '10.60.{}.1'.format(id)  
+                for id,team in enumerate(requests.get(url="http://10.10.0.1/api/game.json").json()["teams"]) 
+                if not id in IGNORED_TEAMS },
     #'TEAMS': {'Team #{}'.format(i): '10.60.{}.1'.format(i)
     #          for i in range(1, 38 + 1)},
-    'IGNORED_TEAMS' : ['NOP Team','Politecnico di Bari'],
     'FLAG_FORMAT': r'[A-Z0-9]{31}=',
 
     'TICK_DURATION': 120,

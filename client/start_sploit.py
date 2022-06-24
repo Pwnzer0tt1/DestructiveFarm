@@ -506,7 +506,7 @@ def show_time_limit_info(args, config, max_runtime, attack_no):
 PRINTED_TEAM_NAMES = 5
 
 
-def get_target_teams(args, teams, attack_no, ignored_teams):
+def get_target_teams(args, teams, attack_no):
     if args.not_per_team:
         return {'*': None}
 
@@ -516,9 +516,6 @@ def get_target_teams(args, teams, attack_no, ignored_teams):
                  if binascii.crc32(addr.encode()) % n == k - 1}
 
     if teams:
-        if ignored_teams:
-            for ignored_team in ignored_teams:
-                del teams[ignored_team]
         if attack_no <= args.verbose_attacks:
             names = sorted(teams.keys())
             if len(names) > PRINTED_TEAM_NAMES:
@@ -554,7 +551,7 @@ def main(args):
             if attack_no == 1:
                 return
             logging.info('Using the old config')
-        teams = get_target_teams(args, config['TEAMS'], attack_no, config['IGNORED_TEAMS'])
+        teams = get_target_teams(args, config['TEAMS'], attack_no)
         if not teams:
             if attack_no == 1:
                 return
