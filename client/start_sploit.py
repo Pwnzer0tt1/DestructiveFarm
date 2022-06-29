@@ -572,7 +572,7 @@ def main(args):
                     flag_id_data = flagIds[args.service_name]
                     flag_id_team_data = json.dumps(flag_id_data[team_addr])
                 else:
-                    flag_id_team_data = ''
+                    flag_id_team_data = "[]"
                 
                 pool.submit(run_sploit, args, team_name, team_addr, attack_no, max_runtime, flag_format, flag_id_team_data)
             
