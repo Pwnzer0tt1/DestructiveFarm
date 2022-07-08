@@ -13,7 +13,7 @@ CONFIG = {
 
     'FLAG_FORMAT': r'[A-Z0-9]{31}=',
 
-    'TICK_DURATION': 120,
+    'TICK_DURATION': 180,
     'START_TIME' : round(datetime.datetime(2022, 6, 16, 12, 0).timestamp()),
     'END_TIME' : round(datetime.datetime(2022, 6, 16, 22, 0).timestamp()),
     
