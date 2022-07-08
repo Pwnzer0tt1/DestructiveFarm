@@ -564,13 +564,13 @@ def main(args):
         show_time_limit_info(args, config, max_runtime, attack_no)
         
         if args.service_name:
-            flagIds = requests.get(config['FLAG_IDS_URL']).json()
+            flagIds = requests.get(config['FLAG_IDS_URL']).json()["flag_ids"]
         
         for team_name, team_addr in teams.items():
             try:
                 if args.service_name is not None:
                     flag_id_data = flagIds[args.service_name]
-                    flag_id_team_data = json.dumps(flag_id_data[team_addr])
+                    flag_id_team_data = json.dumps(flag_id_data[team_name])
                 else:
                     flag_id_team_data = "[]"
                 
