@@ -4,7 +4,7 @@ Pwnzer0tt1's Destructive Farm
 Exploit farm for attack-defense CTF competitions
 
 <p align="center">
-    <img src="https://github.com/Pwnzer0tt1/DestructiveFarm/blob/master/docs/images/farm_server_screenshot.png" width="700">
+    <img src="https://raw.githubusercontent.com/Pwnzer0tt1/DestructiveFarm/master-ccit/docs/images/farm_server_screenshot.png" width="700">
 </p>
 
 ## Differences between stock and Pwnzer0tti1's Destructive Farm
@@ -18,7 +18,7 @@ Exploit farm for attack-defense CTF competitions
 
 2. Added a table showing Teams with the number of every flag captured by a sploit in a specified tick.
 <p align="center">
-    <img src="https://github.com/Pwnzer0tt1/DestructiveFarm/blob/master/docs/images/table_screenshot.png" width="700">
+    <img src="https://raw.githubusercontent.com/Pwnzer0tt1/DestructiveFarm/master-ccit/docs/images/table_screenshot.png" width="700">
 </p>
 
 3. Beatuiful chart showing flags/tick per each sploit.
