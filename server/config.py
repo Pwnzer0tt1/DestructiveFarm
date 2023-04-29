@@ -1,7 +1,7 @@
 import datetime
 import requests, json
 
-IGNORED_TEAMS = [0,5]
+IGNORED_TEAMS = [0,11]
 
 CONFIG = {
     # Don't forget to remove the old database (flags.sqlite) before each competition.
@@ -25,7 +25,7 @@ CONFIG = {
     'SYSTEM_PROTOCOL': 'ccit_http',
     'SYSTEM_HOST': '127.0.0.1',
     'SYSTEM_PORT': 4444,
-    'SYSTEM_TOKEN': '5fe56451972cb2e8be0703412981a718',
+    'SYSTEM_TOKEN': 'c8807a2b534f55d87c858d2fd6e4b251',
     'SYSTEM_URL': 'http://10.10.0.1:8080/flags',
     'FLAG_IDS_URL': 'http://10.10.0.1:8081/flagIds',
 
