@@ -12,10 +12,9 @@ RESPONSES = {
                           'too old', 'not in database', 'already', 'invalid', 'nop team'],
 }
 
-TIMEOUT = 5
-
 
 def submit_flags(flags, config):
+    TIMEOUT = config["HTTP_TIMEOUT"]
     SUBMITTED_FLAGS = [item.flag for item in flags]
 
     r = requests.put(config['SYSTEM_URL'],
@@ -26,7 +25,10 @@ def submit_flags(flags, config):
             yield SubmitResult(flag, FlagStatus.QUEUED, "Too many requests. Error 429")
     else:
         unknown_responses = set()
-        for item in r.json():
+        for i, item in enumerate(r.json()):
+            if not isinstance(item, dict):       
+                yield SubmitResult(SUBMITTED_FLAGS[i], FlagStatus.QUEUED, "Unexpected response. Error 429")
+
             response = item['msg'].strip()
             response = response.replace('[{}] '.format(item['flag']), '')
 

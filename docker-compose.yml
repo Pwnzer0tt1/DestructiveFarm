@@ -1,0 +1,11 @@
+version: "3.7"
+services:
+  destructive-farm:
+    build: .
+    ports:
+      - "5000:5000"
+    volumes:
+      - type: bind
+        source: ./server/config.py
+        target: /opt/app/static/config.py
+    restart: unless-stopped
