@@ -33,33 +33,10 @@ CONFIG = {
     # The server will submit not more than SUBMIT_FLAG_LIMIT flags
     # every SUBMIT_PERIOD seconds. Flags received more than
     # FLAG_LIFETIME seconds ago will be skipped.
-    'SUBMIT_FLAG_LIMIT': 500,
-    'SUBMIT_PERIOD': 30,
-    'FLAG_LIFETIME': 10 * 60,
+    'SUBMIT_FLAG_LIMIT': 1000,
+    'SUBMIT_PERIOD': 20,
+    'FLAG_LIFETIME': 5 * 120,
     
-    # Password for the web interface. You can use it with any login.
-    # This value will be excluded from the config before sending it to farm clients.
-    'SERVER_PASSWORD': 'CHANGE_ME',
-
-    # 'SYSTEM_PROTOCOL': 'ructf_http',
-    # 'SYSTEM_URL': 'http://monitor.ructfe.org/flags',
-    # 'SYSTEM_TOKEN': 'your_secret_token',
-
-    # 'SYSTEM_PROTOCOL': 'volgactf',
-    # 'SYSTEM_HOST': '127.0.0.1',
-
-    # 'SYSTEM_PROTOCOL': 'forcad_tcp',
-    # 'SYSTEM_HOST': '127.0.0.1',
-    # 'SYSTEM_PORT': 31337,
-
-    'TEAM_TOKEN': 'CHANGE_ME',
-
-    # The server will submit not more than SUBMIT_FLAG_LIMIT flags
-    # every SUBMIT_PERIOD seconds. Flags received more than
-    # FLAG_LIFETIME seconds ago will be skipped.
-    'SUBMIT_FLAG_LIMIT': 100,
-    'SUBMIT_PERIOD': 1,
-    'FLAG_LIFETIME': 10 * 60,
 
     # Password for the web interface. You can use it with any login.
     # This value will be excluded from the config before sending it to farm clients.
