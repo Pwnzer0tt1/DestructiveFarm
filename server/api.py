@@ -1,5 +1,7 @@
+import json
 import time
 import math
+from collections import OrderedDict
 
 from flask import request, jsonify
 
@@ -32,9 +34,27 @@ def post_flags():
     db.executemany("INSERT OR IGNORE INTO flags (flag, sploit, team, time, tick, status) "
                    "VALUES (?, ?, ?, ?, ?, ?)", rows)
     graph_row = [flags[0]['sploit'] + str(tick), flags[0]['sploit'], tick]
-    db.execute("INSERT OR IGNORE INTO stats VALUES ( ?, 0 , ? ,?)", graph_row) 
+    db.execute("INSERT OR IGNORE INTO stats VALUES ( ?, 0 , ? ,?)", graph_row)
     db.execute("UPDATE stats SET count = count + ? WHERE id LIKE ?", [len(flags), flags[0]['sploit'] + str(tick)])
 
     db.commit()
 
     return ''
+@app.route('/api/get_stats')
+@auth.api_auth_required
+def get_stats():
+    tick = request.args.get('tick')  # Retrieve the 'tick' parameter from the request
+
+    binds = ()
+    sql = "SELECT * FROM stats"
+    if tick:
+        binds = (int(tick),)
+        sql += f" WHERE tick = (?)"
+    sql += " ORDER BY tick DESC, sploit"
+    rows = database.query(sql, args=binds)
+    data = {}
+    for row in rows:
+        tick, sploit, count = row[3], row[2], row[1]
+        data.setdefault(tick, []).append({sploit: count})
+    return jsonify(data)
+
