@@ -8,7 +8,6 @@ services:
       - type: bind
         source: ./server/config.py
         target: /usr/src/app/server/config.py
-     volumes:
       - type: bind
         source: ./server/flags.sqlite
         target: /usr/src/app/server/flags.sqlite
