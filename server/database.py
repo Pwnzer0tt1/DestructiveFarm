@@ -16,7 +16,7 @@ schema_path = os.path.join(os.path.dirname(__file__), 'schema.sql')
 if "FLAGS_DATABASE" in os.environ:
     db_filename = os.environ["FLAGS_DATABASE"]
 else:
-    db_filename = os.path.join(os.path.dirname(__file__), 'flags.sqlite')
+    db_filename = os.path.join(os.path.dirname(__file__), 'db', 'flags.sqlite')
 
 
 _init_started = False

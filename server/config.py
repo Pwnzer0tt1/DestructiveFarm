@@ -1,16 +1,16 @@
 import datetime
-import requests, json
+import requests
 
-IGNORED_TEAMS = [0,11]
+IGNORED_TEAMS = [0,6]
 
 CONFIG = {
     # Don't forget to remove the old database (flags.sqlite) before each competition.
 
     # The clients will run sploits on TEAMS and
     # fetch FLAG_FORMAT from sploits' stdout.
-    'TEAMS': {  f"{team['name']} #{id}" : '10.60.{}.1'.format(id)  
-                for id,team in enumerate(requests.get(url="http://10.10.0.1/api/game.json").json()["teams"]) 
-                if not id in IGNORED_TEAMS },
+    'TEAMS': {  f"{team['shortname']}" : '10.60.{}.1'.format(team["teamId"])  
+                for team in requests.get(url="http://10.10.0.1/api/scoreboard/table/1").json()["scoreboard"] 
+                if not team["teamId"] in IGNORED_TEAMS },
     #'TEAMS': {'Team #{}'.format(i): '10.60.{}.1'.format(i)
     #          for i in range(1, 38 + 1)},
     'FLAG_FORMAT': r'[A-Z0-9]{31}=',
@@ -40,9 +40,8 @@ CONFIG = {
 
     # Password for the web interface. You can use it with any login.
     # This value will be excluded from the config before sending it to farm clients.
-    'SERVER_PASSWORD': 'CHANGE_ME',
+    'SERVER_PASSWORD': None, # No Authentication
 
     # Use authorization for API requests
-    'ENABLE_API_AUTH': False,
-    'API_TOKEN': 'CHANGE_ME'
+    'API_TOKEN': None # No Authentication
 }
