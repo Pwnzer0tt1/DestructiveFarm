@@ -2,6 +2,9 @@ FROM python:3.10-slim-bullseye
 
 WORKDIR /app/server
 
+RUN apt-get update
+RUN apt-get install gcc python3-dev
+
 ADD ./server/requirements.txt ./
 RUN pip install --no-cache-dir -r requirements.txt
 
