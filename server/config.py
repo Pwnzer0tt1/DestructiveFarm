@@ -1,16 +1,19 @@
 import datetime
 import requests
 
+"""
 IGNORED_TEAMS = [0,6]
+'TEAMS': {  f"{team['shortname']}" : '10.60.{}.1'.format(team["teamId"])  
+                for team in requests.get(url="http://10.10.0.1/api/scoreboard/table/1", timeout=1).json()["scoreboard"] 
+                if not team["teamId"] in IGNORED_TEAMS },
+"""
 
 CONFIG = {
     # Don't forget to remove the old database (flags.sqlite) before each competition.
 
     # The clients will run sploits on TEAMS and
     # fetch FLAG_FORMAT from sploits' stdout.
-    'TEAMS': {  f"{team['shortname']}" : '10.60.{}.1'.format(team["teamId"])  
-                for team in requests.get(url="http://10.10.0.1/api/scoreboard/table/1").json()["scoreboard"] 
-                if not team["teamId"] in IGNORED_TEAMS },
+    "TEAMS": {},
     #'TEAMS': {'Team #{}'.format(i): '10.60.{}.1'.format(i)
     #          for i in range(1, 38 + 1)},
     'FLAG_FORMAT': r'[A-Z0-9]{31}=',
