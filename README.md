@@ -1,7 +1,7 @@
 Pwnzer0tt1's Destructive Farm
 ================
-
-Exploit farm for attack-defense CTF competitions
+ 
+Exploit farm for attack-defense CTF competitions!
 
 <p align="center">
     <img src="https://raw.githubusercontent.com/Pwnzer0tt1/DestructiveFarm/master-ccit/docs/images/farm_server_screenshot.png" width="700">
