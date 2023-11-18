@@ -4,8 +4,8 @@ services:
     build: .
     restart: unless-stopped
     ports:
-      - "5001:5000"
+      - "5000:5001"
     volumes:
       - ./server/config.py:/app/server/config.py
-      - ./server/db:/usr/server/db
+      - ./server/db:/app/server/db
 
